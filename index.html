@@ -1,10 +1,218 @@
-﻿<html>
-  <head>
-    <title></title>
-    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-  </head>
-  <body>
-    <hl>hollo HTML</hl>
-    <hl>中文啊</hl>
-  </body>
-</html>
+<!DOCTYPE html>
+<!-- saved from url=(0017)http://gpu.rocks/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="gpu.js is a single-file JavaScript library for GPGPU in the browser. gpu.js will automatically compile specially written JavaScript functions into shader language and run them on the GPU using the WebGL API. In the case where WebGL is not available, the functions will still run in regular JavaScript.">
+
+    <meta property="og:title" content="gpu.js - GPU Accelerated JavaScript">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://gpu.rocks/">
+    <meta property="og:image" content="http://gpu.rocks/img/ogimage.png">
+
+    <title>gpu.js - GPU Accelerated JavaScript</title>
+    <script async="" src="./gpu.js - GPU Accelerated JavaScript_files/cloudflare.min.js.下载"></script><script src="./gpu.js - GPU Accelerated JavaScript_files/Y6RQ6KTYwoGOxX2WEfaQZCfcvyk.js.下载"></script><script src="./gpu.js - GPU Accelerated JavaScript_files/fTqOW5AsJDdPrmpYMI0vCcMzneE.js.下载"></script><script type="text/javascript">
+//<![CDATA[
+try{if (!window.CloudFlare) {var CloudFlare=[{verbose:0,p:0,byc:0,owlid:"cf",bag2:1,mirage2:0,oracle:0,paths:{cloudflare:"/cdn-cgi/nexp/dok3v=1613a3a185/"},atok:"9622bf78df0ee5fb50755d2b1971206e",petok:"9de61866738a26eba2b3435272ef7a522cd02d96-1500531174-1800",zone:"gpu.rocks",rocket:"0",apps:{"ga_key": {"ua": "UA-43926610-2", "ga_bs": "2"}}}];!function(a,b){a=document.createElement("script"),b=document.getElementsByTagName("script")[0],a.async=!0,a.src="//ajax.cloudflare.com/cdn-cgi/nexp/dok3v=85b614c0f6/cloudflare.min.js",b.parentNode.insertBefore(a,b)}()}}catch(e){};
+//]]>
+</script>
+<link rel="icon" href="./gpu.js - GPU Accelerated JavaScript_files/jelly.png">
+
+    <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
+    <link href="./gpu.js - GPU Accelerated JavaScript_files/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="./gpu.js - GPU Accelerated JavaScript_files/freelancer.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="./gpu.js - GPU Accelerated JavaScript_files/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="./gpu.js - GPU Accelerated JavaScript_files/css" rel="stylesheet" type="text/css">
+    <link href="./gpu.js - GPU Accelerated JavaScript_files/css(1)" rel="stylesheet" type="text/css">
+
+    <!-- highlight.js -->
+    <link rel="stylesheet" href="./gpu.js - GPU Accelerated JavaScript_files/color-brewer.min.css">
+    <script src="./gpu.js - GPU Accelerated JavaScript_files/highlight.min.js.下载"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+<style type="text/css">.cf-hidden { display: none; } .cf-invisible { visibility: hidden; }</style><link rel="stylesheet" href="data:text/css;charset=utf-8;base64,Y2xvdWRmbGFyZS1hcHBbYXBwLWlkPSJhLWJldHRlci1icm93c2VyIl0gewogIGRpc3BsYXk6IGJsb2NrOwogIGJhY2tncm91bmQ6ICM0NTQ4NGQ7CiAgY29sb3I6ICNmZmY7CiAgbGluZS1oZWlnaHQ6IDEuNDU7CiAgcG9zaXRpb246IGZpeGVkOwogIHotaW5kZXg6IDkwMDAwMDAwOwogIHRvcDogMDsKICBsZWZ0OiAwOwogIHJpZ2h0OiAwOwogIHBhZGRpbmc6IC41ZW0gMWVtOwogIHRleHQtYWxpZ246IGNlbnRlcjsKICAtd2Via2l0LXVzZXItc2VsZWN0OiBub25lOwogICAgIC1tb3otdXNlci1zZWxlY3Q6IG5vbmU7CiAgICAgIC1tcy11c2VyLXNlbGVjdDogbm9uZTsKICAgICAgICAgIHVzZXItc2VsZWN0OiBub25lOwp9CgpjbG91ZGZsYXJlLWFwcFthcHAtaWQ9ImEtYmV0dGVyLWJyb3dzZXIiXVtkYXRhLXZpc2liaWxpdHk9ImhpZGRlbiJdIHsKICBkaXNwbGF5OiBub25lOwp9CgpjbG91ZGZsYXJlLWFwcFthcHAtaWQ9ImEtYmV0dGVyLWJyb3dzZXIiXSBjbG91ZGZsYXJlLWFwcC1tZXNzYWdlIHsKICBkaXNwbGF5OiBibG9jazsKfQoKY2xvdWRmbGFyZS1hcHBbYXBwLWlkPSJhLWJldHRlci1icm93c2VyIl0gYSB7CiAgdGV4dC1kZWNvcmF0aW9uOiB1bmRlcmxpbmU7CiAgY29sb3I6ICNlYmViZjQ7Cn0KCmNsb3VkZmxhcmUtYXBwW2FwcC1pZD0iYS1iZXR0ZXItYnJvd3NlciJdIGE6aG92ZXIsCmNsb3VkZmxhcmUtYXBwW2FwcC1pZD0iYS1iZXR0ZXItYnJvd3NlciJdIGE6YWN0aXZlIHsKICBjb2xvcjogI2RiZGJlYjsKfQoKY2xvdWRmbGFyZS1hcHBbYXBwLWlkPSJhLWJldHRlci1icm93c2VyIl0gY2xvdWRmbGFyZS1hcHAtY2xvc2UgewogIGRpc3BsYXk6IGJsb2NrOwogIGN1cnNvcjogcG9pbnRlcjsKICBmb250LXNpemU6IDEuNWVtOwogIHBvc2l0aW9uOiBhYnNvbHV0ZTsKICByaWdodDogLjRlbTsKICB0b3A6IC4zNWVtOwogIGhlaWdodDogMWVtOwogIHdpZHRoOiAxZW07CiAgbGluZS1oZWlnaHQ6IDE7Cn0KCmNsb3VkZmxhcmUtYXBwW2FwcC1pZD0iYS1iZXR0ZXItYnJvd3NlciJdIGNsb3VkZmxhcmUtYXBwLWNsb3NlOmFjdGl2ZSB7CiAgLXdlYmtpdC10cmFuc2Zvcm06IHRyYW5zbGF0ZVkoMXB4KTsKICAgICAgICAgIHRyYW5zZm9ybTogdHJhbnNsYXRlWSgxcHgpOwp9CgpjbG91ZGZsYXJlLWFwcFthcHAtaWQ9ImEtYmV0dGVyLWJyb3dzZXIiXSBjbG91ZGZsYXJlLWFwcC1jbG9zZTpob3ZlciB7CiAgb3BhY2l0eTogLjllbTsKICBjb2xvcjogI2ZmZjsKfQo="></head>
+
+<body id="page-top" class="index">
+
+    <!-- Right side, white on black -->
+    <a href="https://github.com/gpujs/gpu.js" class="github-corner"><svg width="80" height="80" viewBox="0 0 250 250" style="fill: rgba(21, 21, 19, 0.53); color:#fff; position: absolute; top: 0; border: 0; right: 0;"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <img class="img-responsive main-logo" src="./gpu.js - GPU Accelerated JavaScript_files/jelly.png" alt="">
+                    <div class="intro-text">
+                        <span class="name">gpu.js</span>
+                        <span class="skills">GPU Accelerated JavaScript</span>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <a href="http://gpu.rocks/js/dist/develop/gpu.js.zip" download="gpu.js.zip" class="btn btn-lg btn-outline">
+                        <i class="fa fa-download"></i> Download (develop branch)
+                    </a>
+                    <a href="https://github.com/gpujs/gpu.js" class="btn btn-lg btn-outline">
+                        <i class="fa fa-github"></i> Github Repo
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Features Section -->
+    <section style="background-color: #f5f5f5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-lg-offset-2">
+                    <div class="text-center">
+                        <img src="./gpu.js - GPU Accelerated JavaScript_files/threads.png" style="padding: 20px; width: 100px; height: 100px;">
+                        <p>
+                            Perform massively parallel GPGPU computations using WebGL.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="text-center">
+                        <img src="./gpu.js - GPU Accelerated JavaScript_files/thread.png" style="padding: 20px; width: 100px; height: 100px;">
+                        <p>
+                            Graceful pure JavaScript fallback when WebGL is not available.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content Section -->
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>Demo</h2>
+                    <hr class="star-primary">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+<h3>Matrix Multiplication</h3>
+<pre><code class="js hljs javascript" style="background: transparent;"><span class="hljs-keyword">const</span> gpu = <span class="hljs-keyword">new</span> GPU();
+
+<span class="hljs-comment">// Create the GPU accelerated function from a kernel</span>
+<span class="hljs-comment">// function that computes a single element in the</span>
+<span class="hljs-comment">// 512 x 512 matrix (2D array). The kernel function</span>
+<span class="hljs-comment">// is run in a parallel manner in the GPU resulting</span>
+<span class="hljs-comment">// in very fast computations! (...sometimes)</span>
+<span class="hljs-keyword">const</span> matMult = gpu.createKernel(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">a, b</span>) </span>{
+    <span class="hljs-keyword">var</span> sum = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">512</span>; i++) {
+        sum += a[<span class="hljs-keyword">this</span>.thread.y][i] * b[i][<span class="hljs-keyword">this</span>.thread.x];
+    }
+    <span class="hljs-keyword">return</span> sum;
+}).setDimensions([<span class="hljs-number">512</span>, <span class="hljs-number">512</span>]);
+
+<span class="hljs-comment">// Perform matrix multiplication on 2 matrices of size 512 x 512</span>
+<span class="hljs-keyword">const</span> c = matMult(a, b);</code></pre>
+<div class="alert alert-info demo-mult hide" role="alert"></div>
+<a href="javascript:demoMult();" class="btn btn-primary">
+    <i class="fa fa-play"></i> Run Benchmark
+</a>
+            </div>
+        </div>
+    </div></section>
+
+    <hr>
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>Older Releases</h2>
+                    <hr class="star-primary">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <div class="page-header">
+                        <h1>v0.0-alpha "Hackathon"<br><small>Tue Feb 28 2017</small></h1>
+                    </div>
+                    <p>
+                        This is the legacy version for backward compatiblity with the demos made using the "hackathon" API.
+                    </p>
+                    <a href="http://gpu.rocks/js/dist/v0.0/gpu.min.js" download="gpu.js" class="btn btn-lg btn-primary">
+                        <i class="fa fa-download"></i> Download
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Awards Section -->
+    <section class="hacknroll" id="accolades">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <i class="fa fa-trophy" style="font-size: 100px;"></i>
+                    <h3>2nd Place, Hack &amp; Roll 2016</h3>
+                    <p>
+                        Made under 24 hours for a NUS Hackers hackathon, out of 68 competing projects.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="footer-below">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        Copyright © 2016 gpu.js Team. Licensed under MIT.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+    <div class="scroll-top page-scroll visible-xs visible-sm">
+        <a class="btn btn-primary" href="http://gpu.rocks/#page-top">
+            <i class="fa fa-chevron-up"></i>
+        </a>
+    </div>
+
+    <!-- jQuery -->
+    <script src="./gpu.js - GPU Accelerated JavaScript_files/jquery.js.下载"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="./gpu.js - GPU Accelerated JavaScript_files/bootstrap.min.js.下载"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="./gpu.js - GPU Accelerated JavaScript_files/jquery.easing.min.js.下载"></script>
+    <script src="./gpu.js - GPU Accelerated JavaScript_files/classie.js.下载"></script>
+
+    <script src="./gpu.js - GPU Accelerated JavaScript_files/lodash.min.js.下载"></script>
+    <script src="./gpu.js - GPU Accelerated JavaScript_files/platform.js.下载"></script>
+    <script src="./gpu.js - GPU Accelerated JavaScript_files/benchmark.js.下载"></script>
+
+    <script src="./gpu.js - GPU Accelerated JavaScript_files/gpu-core.min.js.下载"></script>
+    <script src="./gpu.js - GPU Accelerated JavaScript_files/gpu.min.js.下载"></script>
+    <script src="./gpu.js - GPU Accelerated JavaScript_files/demo.js.下载"></script>
+
+
+
+</body></html>
